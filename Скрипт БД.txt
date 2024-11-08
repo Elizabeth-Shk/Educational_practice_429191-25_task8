@@ -1,0 +1,34 @@
+create table inputDateRequests (requestID int Primary key not NULL, startDate date, climateTechModel int, problemDescryption int, requestStatus int, completionDate date, repairParts varchar(200), masterID int, clientID int not null);
+create table climateTechType(typeID int Primary key not NULL, typeName varchar(50));
+create table climateTechModel(modelID int Primary key not NULL, _type int, modelName varchar(50));
+create table problemDescryption(problemID int Primary key not NULL, problemlName varchar(150));
+create table requestStatus(statusID int Primary key not NULL, statuslName varchar(50));
+create table inputDateComments(commentID int Primary key not NULL, massege varchar(150), masterID int, requestID int);
+create table inputDateUsers(userID int Primary key not NULL, fio varchar(50), phone char(11) check (phone like '8[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'), _login char(16) not null, _password char(16) not null, _type int not null);
+create table userType(typeID int Primary key not NULL, typeName varchar(50));
+
+INSERT INTO inputDateRequests (startDate, climateTechType, climateTechModel, problemDescryption, requestStatus, completionDate, repairParts, masterID, clientID)
+values('2023-06-06',1,1,1,2,null,null,2,7),('2023-05-05',1,2,2,2,null,null,3,8),('2022-07-07',2,3,3,3,'2023-01-01',null,3,9),('2023-08-02',2,4,4,1,null,null,null,8),('2023-08-02',3,5,5,2,null,null,null,9);
+INSERT INTO climateTechType(typeName)
+values('Кондиционер'),('Увлажнитель воздуха'),('Сушилка для рук');
+INSERT INTO climateTechModel(modelName, _type)
+values('TCL TAC-12CHSA/TPG-W белый', 1),('Electrolux EACS/I-09HAT/N3_21Y белый', 1),('Xiaomi Smart Humidifier 2', 2),('Polaris PUH 2300 WIFI IQ Home', 2),('Ballu BAHD-1250', 3);
+INSERT INTO problemDescryption( problemlName)
+values('Не охлаждает воздух'),('Выключается сам по себе'),('Пар имеет неприятный запах'),('Увлажнитель воздуха продолжает работать при предельном снижении уровня воды'),('Не работает');
+INSERT INTO requestStatus(statuslName)
+values('Новая заявка'),('В процессе ремонта'),('Готова к выдаче');
+INSERT INTO inputDateComments(massege, masterID, requestID)
+values('Все сделаем!',2,1),( 'Все сделаем!',3,2),( 'Починим в момент.',3,3);
+INSERT INTO inputDateUsers(fio, phone, _login, _password, _type)
+values('Широков Василий Матвеевич','89210563128','login1','pass1',4),
+('Кудрявцева Ева Ивановна','89535078985','login2','pass2',3),
+('Гончарова Ульяна Ярославовна','89210673849','login3','pass3',3),
+('Гусева Виктория Данииловна','89990563748','login4','pass4',2),
+('Баранов Артём Юрьевич','89994563847','login5','pass5',2),
+('Овчинников Фёдор Никитич','89219567849','login6','pass6',1),
+('Петров Никита Артёмович','89219567841','login7','pass7',1),
+('Ковалева Софья Владимировна','89219567842','login8','pass8',1),
+('Кузнецов Сергей Матвеевич','89219567843','login9','pass9',1),
+('Беспалова Екатерина Даниэльевна','89219567844','login10','pass10',3);
+INSERT INTO userType(typeName)
+values('Заказчик'),('Оператор'),('Специалист'),('Менеджер');
